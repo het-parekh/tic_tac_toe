@@ -11,42 +11,46 @@ def choice():
         print("Player 1 is 'O' and Player 2 is 'X'")
     print("'X' starts first\n")
 
+def ask():
+    print("-------------------------------------------------------")
+    c = int(input("1. New Game   2.Exit\n"))
+    if c == 1:
+        clear()
+        start()
+    else:
+        print("Exiting.......")
+        exit(0)
+
+
 def winner(memory):
     global r
+
+
     if {1,2,3}.issubset(memory) or {4,5,6}.issubset(memory) or {7,8,9}.issubset(memory) or {1,5,9}.issubset(memory) or {3,5,7}.issubset(memory) or {1,4,7}.issubset(memory) or {2,5,8}.issubset(memory) or {3,6,9}.issubset(memory):
         if r==0:
             print("Player 1 wins!!")
         else:
             print("Player 2 wins!!")
-
-        print("-------------------------------------------------------")
-        c =int(input("1. New Game   2.Exit\n"))
-        if c==1:
-            clear()
-            start()
-        else:
-            print("Exiting.......")
-            exit(0)
+        ask()
 
     if {-1, -2, -3}.issubset(memory) or {-4, -5, -6}.issubset(memory) or {-7,-8, -9}.issubset(memory) or {-1, -5, -9}.issubset(memory) or {-3, -5, -7}.issubset(memory) or {-1, -4, -7}.issubset(memory) or {-2, -5, -8}.issubset(memory) or {-3, -6,-9}.issubset(memory):
         if r==0:
             print("Player 2 wins!!")
         else:
             print("Player 1 wins!!")
-        print("-------------------------------------------------------")
-        c = int(input("1. New Game   2.Exit\n"))
-        if c == 1:
-            clear()
-            start()
-        else:
-            print("Exiting.......")
-            exit(0)
+        ask()
+
+    if (len(memoryX)==10):
+        print("Its a Draw!!")
+        ask()
     player_input()
 
 
 def game(num):
         global memoryX
         memoryX.add(num)
+
+
         if {1,2,3,-1,-2,-3}.intersection(memoryX):
                 if 1 in memoryX:
                     print("  X  |",end="")
